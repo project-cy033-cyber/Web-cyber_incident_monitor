@@ -4,6 +4,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from models import db, User, Incident
 from notifications import send_notification
 from werkzeug.security import generate_password_hash, check_password_hash
+from scraper import scrape_headlines
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///incidents.db'
@@ -75,6 +76,13 @@ def report_incident():
     send_notification('admin@example.com', 'New Incident Reported', f'Incident {title} reported.')
     
     return redirect(url_for('index'))
+
+@app.route('/scrape', methods=['GET'])
+@login_required
+def scrape():
+    url = "https://example-news-site.com"  # Replace with the actual news website URL
+    headlines = scrape_headlines(url)
+    return render_template('scraped_data.html', headlines=headlines)
 
 if __name__ == '__main__':
     with app.app_context():
