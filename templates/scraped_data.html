@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Scraped Headlines</title>
+</head>
+<body>
+    <h1>Scraped Headlines</h1>
+    <ul>
+        {% for headline in headlines %}
+            <li>{{ headline }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Back to Dashboard</a>
+</body>
+</html>
