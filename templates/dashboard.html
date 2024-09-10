@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Cyber Incident Dashboard</h1>
+    <a href="{{ url_for('scrape') }}">Scrape News Headlines</a>
     <form method="POST" action="/report">
         <input type="text" name="title" placeholder="Incident Title" required>
         <textarea name="description" placeholder="Description" required></textarea>
