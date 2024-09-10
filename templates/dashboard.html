@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cyber Incident Dashboard</title>
+</head>
+<body>
+    <h1>Cyber Incident Dashboard</h1>
+    <form method="POST" action="/report">
+        <input type="text" name="title" placeholder="Incident Title" required>
+        <textarea name="description" placeholder="Description" required></textarea>
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="text" name="severity" placeholder="Severity" required>
+        <button type="submit">Report Incident</button>
+    </form>
+    <h2>Reported Incidents</h2>
+    <ul>
+        {% for incident in incidents %}
+            <li>{{ incident.title }} - {{ incident.timestamp }} - {{ incident.severity }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
